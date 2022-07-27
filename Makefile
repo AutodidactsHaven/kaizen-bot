@@ -1,7 +1,9 @@
 current_dir = $(shell pwd)
 
 lint:
-	@echo 'lint TODO'
+	docker build -f build/Dockerfile . -t kaizen_lint
+	docker run -v "$(current_dir)/src/:/app/src" kaizen_lint 
+	@echo 'lint finished!'
 
 test:
 	@echo 'test TODO'
