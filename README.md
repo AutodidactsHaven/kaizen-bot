@@ -4,6 +4,8 @@ For the Autodidactic Study Group Discord server.
 
 ## Dev env setup
 
+Get the code + dependencies with `git clone --recurse-submodules https://github.com/omnisci3nce/kaizen-bot.git`
+
 ### Dependencies
 
 * **Clang** C++ compiler
