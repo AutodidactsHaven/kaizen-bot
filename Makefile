@@ -17,3 +17,8 @@ migrate_up:
 	docker run --rm -it --network=host -v "$(current_dir)/db:/db" \
 		-e DATABASE_URL="postgres://postgres:postgres@127.0.0.1:5432/kaizen?sslmode=disable" \
 		amacneil/dbmate up
+
+migrate_down:
+	docker run --rm -it --network=host -v "$(current_dir)/db:/db" \
+		-e DATABASE_URL="postgres://postgres:postgres@127.0.0.1:5432/kaizen?sslmode=disable" \
+		amacneil/dbmate down
