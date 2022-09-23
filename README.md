@@ -8,9 +8,7 @@ Get the code + dependencies with `git clone --recurse-submodules https://github.
 
 ### Dependencies
 
-* **Clang** C++ compiler
-* **D++** C++ Discord Library
-  * [Install instructions](https://dpp.dev/md_docpages_01_installing.html)
+`python3 -m pip install -U discord.py python-dotenv`
 
 ### Commands
 

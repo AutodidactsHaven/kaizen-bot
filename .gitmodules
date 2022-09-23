@@ -1,6 +1,0 @@
-[submodule "deps/DPP"]
-	path = deps/DPP
-	url = https://github.com/brainboxdotcc/DPP.git
-[submodule "deps/libpqxx"]
-	path = deps/libpqxx
-	url = https://github.com/jtv/libpqxx.git
