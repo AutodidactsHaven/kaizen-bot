@@ -25,6 +25,17 @@ def populate_db():
                         cur.execute("INSERT INTO member_to_role_map (member_username, role_name) VALUES (%s, %s)", (member.name+member.discriminator, role.name))
                     conn.commit()
 
+def get_roles_for_user_by_display_name(display_name):
+    like_pattern = '{}%'.format(display_name)
+    with psycopg.connect(DB) as conn:
+        with conn.cursor() as cur:
+            cur.execute("""select username, display_name, role_name from members 
+inner join member_to_role_map on members.username = member_to_role_map.member_username 
+where display_name like (%s)""", (like_pattern, ))
+            rows = cur.fetchall()
+            cur.close()
+            return rows
+
 class MyClient(discord.Client):
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
@@ -40,18 +51,19 @@ class MyClient(discord.Client):
             await message.channel.send(response)
 
         if message.content.startswith('$time'):
-            after_command = message.content.split('$time ').join(' ').lower()
+            after_command = message.content.split('$time ')[1]
+            print(after_command)
 
-            if message.mentions:
-                mentioned_member = message.mentions[0]
-                member_info = client.guilds[0].get_member(mentioned_member.id)
-                for role in member_info.roles:
-                    if role.name.startswith("UTC"):
-                        offset = role.name.split("UTC")[1]
+            if after_command != '':
+                member_roles = get_roles_for_user_by_display_name(after_command)
+                for role in member_roles:
+                    role_name = role[2]
+                    if role_name.startswith("UTC"):
+                        offset = role_name.split("UTC")[1]
                         now_utc = datetime.datetime.now(datetime.timezone.utc)
                         local = now_utc + datetime.timedelta(hours=int(offset))
                         local_string = datetime.datetime.strftime(local, "%Y-%m-%d %H:%M")
-                        response = f'The datetime for {member_info.name} is **{local_string}** (Role: {role.name})'
+                        response = f'The datetime for {role[1]} is **{local_string}** (Role: {role_name})'
                         await message.channel.send(response)
                         return
 
