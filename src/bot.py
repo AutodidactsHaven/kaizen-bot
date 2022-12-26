@@ -19,7 +19,7 @@ def populate_db():
                     m = client.guilds[0].get_member(member.id)
                     print(m)
                 
-                    cur.execute("INSERT INTO members (username) VALUES (%s)", ([member.name+member.discriminator]))
+                    cur.execute("INSERT INTO members (username, display_name) VALUES (%s, %s)", ([member.name+member.discriminator, m.display_name]))
                     for role in m.roles:
                         cur.execute("INSERT INTO roles (name) VALUES (%s) ON CONFLICT DO NOTHING", ([role.name]))
                         cur.execute("INSERT INTO member_to_role_map (member_username, role_name) VALUES (%s, %s)", (member.name+member.discriminator, role.name))
@@ -40,6 +40,8 @@ class MyClient(discord.Client):
             await message.channel.send(response)
 
         if message.content.startswith('$time'):
+            after_command = message.content.split('$time ').join(' ').lower()
+
             if message.mentions:
                 mentioned_member = message.mentions[0]
                 member_info = client.guilds[0].get_member(mentioned_member.id)
