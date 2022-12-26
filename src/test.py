@@ -32,7 +32,7 @@ class MyClient(discord.Client):
         if message.author == client.user:
             return
         
-        if message.content.startswith == '$hello':
+        if message.content.startswith('$hello'):
             response = 'Hello!'
             await message.channel.send(response)
 
