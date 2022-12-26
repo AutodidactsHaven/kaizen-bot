@@ -2,6 +2,7 @@
 
 create table members(
     username text primary key,
+    display_name text not null,
     is_member boolean default false,
     region text,
     timezone integer
@@ -19,6 +20,6 @@ create table member_to_role_map(
 
 -- migrate:down
 
-drop table member_to_tech_map;
-drop table technologies;
+drop table member_to_role_map;
+drop table roles;
 drop table members;

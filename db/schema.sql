@@ -50,6 +50,7 @@ ALTER SEQUENCE public.member_to_role_map_id_seq OWNED BY public.member_to_role_m
 
 CREATE TABLE public.members (
     username text NOT NULL,
+    display_name text NOT NULL,
     is_member boolean DEFAULT false,
     region text,
     timezone integer
