@@ -55,14 +55,8 @@ class MyClient(discord.Client):
 
                 # no UTC roles
                 await message.channel.send('Couldn\'t find timezone role for user.')
-
-                # TODO:
-                # fetch roles for member from database
-                # get UTC role if there is one
-                # add the +/- UTC offset to the current time
-                # send response
             else:
-                # Print some common timezones for active members
+                # TODO: Print some common timezones for active members
                 now = datetime.datetime.now(datetime.timezone.utc)
                 local = now + datetime.timedelta(hours=11)
                 response = datetime.datetime.strftime(local, "%Y-%m-%d %H:%M:%S")
