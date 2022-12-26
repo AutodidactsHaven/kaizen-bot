@@ -4,11 +4,11 @@ For the Autodidactic Study Group Discord server.
 
 ## Dev env setup
 
-Get the code + dependencies with `git clone --recurse-submodules https://github.com/omnisci3nce/kaizen-bot.git`
+Get the code with `git clone ttps://github.com/omnisci3nce/kaizen-bot.git`
 
 ### Dependencies
 
-`python3 -m pip install -U discord.py python-dotenv`
+`python3 -m pip install -U discord.py python-dotenv psycopg`
 
 ### Commands
 
