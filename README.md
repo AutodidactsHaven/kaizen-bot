@@ -4,7 +4,7 @@ For the Autodidactic Study Group Discord server.
 
 ## Dev env setup
 
-Get the code with `git clone ttps://github.com/omnisci3nce/kaizen-bot.git`
+Get the code with `git clone https://github.com/omnisci3nce/kaizen-bot.git`
 
 ### Dependencies
 
