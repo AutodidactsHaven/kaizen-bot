@@ -13,6 +13,7 @@ def populate_db():
     with psycopg.connect(DB) as conn:
             # Open a cursor to perform database operations
             with conn.cursor() as cur:
+                # For now I just delete all the current data and reinitialise it on bot startup
                 cur.execute("DELETE FROM member_to_role_map")
                 cur.execute("DELETE FROM members")
                 for member in client.guilds[0].members:
@@ -52,7 +53,7 @@ class MyClient(discord.Client):
 
         if message.content.startswith('$time'):
             after_command = message.content.split('$time ')[1]
-            print(after_command)
+            print(f'Looking for user with display name {after_command}')
 
             if after_command != '':
                 member_roles = get_roles_for_user_by_display_name(after_command)
