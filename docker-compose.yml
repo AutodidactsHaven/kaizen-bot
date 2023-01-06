@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  db:
+    container_name: kaizen_db
+    image: postgres:14.4
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=kaizen
+    ports:
+      - 5434:5432
