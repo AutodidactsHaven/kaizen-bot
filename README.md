@@ -1,6 +1,6 @@
 # kaizen-bot
 
-For the Autodidactic Study Group Discord server.
+For the Autodidactics Haven Discord server.
 
 ## Dev env setup
 
